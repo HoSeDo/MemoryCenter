@@ -2,25 +2,17 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>클릭한 위치에 마커 표시하기 + 장소 검색</title>
+  <title>클릭한 위치에 마커 표시하기</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>치매안심센터 안내 지도</h1>
-
-  <div class="search-box">
-    <input type="text" id="keyword" placeholder="예: 보건소, 병원 등" />
-    <button onclick="searchPlaces()">검색</button>
-  </div>
-
   <div id="map"></div>
-  <p><em>지도를 클릭하거나 장소를 검색해보세요!</em></p>
+  <p><em>지도를 클릭해주세요!</em></p>
   <div id="clickLatlng"></div>
 
-  <!-- Kakao 지도 API (자동로드 false + services 라이브러리 포함) -->
-  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b08bb0d7029cff05ee0ab4ab533493ce&autoload=false"></script>
+  <!-- Kakao 지도 API (자동 로드 false로 설정 후 script.js에서 init 호출) -->
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=여기에_발급받은_APP_KEY를_입력하세요&autoload=false"></script>
   <script src="script.js"></script>
 </body>
 </html>
-
 
