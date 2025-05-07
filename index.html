@@ -1,65 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>치매 설문 결과 - 주변 병원 안내</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; }
-    #map { width: 100%; height: 400px; margin-top: 20px; }
-  </style>
+  <meta charset="utf-8" />
+  <title>클릭한 위치에 마커 표시하기 + 장소 검색</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>설문 결과: 전문가 상담이 필요할 수 있습니다</h2>
-  <p>아래 지도에서 가까운 병원이나 보건소를 참고하세요.</p>
+  <h1>치매안심센터 안내 지도</h1>
+
+  <div class="search-box">
+    <input type="text" id="keyword" placeholder="예: 보건소, 병원 등" />
+    <button onclick="searchPlaces()">검색</button>
+  </div>
 
   <div id="map"></div>
+  <p><em>지도를 클릭하거나 장소를 검색해보세요!</em></p>
+  <div id="clickLatlng"></div>
 
-  <!-- autoload=false 필수 -->
+  <!-- Kakao 지도 API (자동로드 false + services 라이브러리 포함) -->
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=b08bb0d7029cff05ee0ab4ab533493ce&autoload=false"></script>
-  <script>
-    kakao.maps.load(function () {
-      var mapContainer = document.getElementById('map');
-      var mapOption = {
-        center: new kakao.maps.LatLng(37.5665, 126.9780),
-        level: 5
-      };
-
-      var map = new kakao.maps.Map(mapContainer, mapOption);
-
-      var locations = [
-        {
-          title: "서울보건소",
-          latlng: new kakao.maps.LatLng(37.5714, 126.9918)
-        },
-        {
-          title: "서울대학교병원",
-          latlng: new kakao.maps.LatLng(37.5796, 126.9980)
-        },
-        {
-          title: "서울의료원",
-          latlng: new kakao.maps.LatLng(37.6236, 127.0801)
-        }
-      ];
-
-      locations.forEach(function(loc) {
-        var marker = new kakao.maps.Marker({
-          map: map,
-          position: loc.latlng,
-          title: loc.title
-        });
-
-        var infowindow = new kakao.maps.InfoWindow({
-          content: `<div style="padding:5px;font-size:14px;">${loc.title}</div>`
-        });
-
-        kakao.maps.event.addListener(marker, 'mouseover', function() {
-          infowindow.open(map, marker);
-        });
-        kakao.maps.event.addListener(marker, 'mouseout', function() {
-          infowindow.close();
-        });
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
+
+
