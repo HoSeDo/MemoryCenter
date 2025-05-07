@@ -13,9 +13,9 @@ kakao.maps.load(function () {
   marker.setMap(map);
 
   var resultDiv = document.getElementById('clickLatlng');
-  var ps = new kakao.maps.services.Places(); // 장소 검색 객체
+  var ps = new kakao.maps.services.Places();
 
-  // 지도 클릭 시 마커 이동
+  // 지도 클릭 시 마커 이동 및 위도/경도 표시
   kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
     var latlng = mouseEvent.latLng;
 
@@ -27,7 +27,7 @@ kakao.maps.load(function () {
     resultDiv.innerHTML = message;
   });
 
-  // 검색 함수 (버튼에서 호출)
+  // 검색 함수
   window.searchPlaces = function () {
     var keyword = document.getElementById('keyword').value.trim();
 
@@ -38,7 +38,7 @@ kakao.maps.load(function () {
 
     ps.keywordSearch(keyword, function (data, status) {
       if (status === kakao.maps.services.Status.OK) {
-        var place = data[0]; // 첫 번째 결과만 사용
+        var place = data[0];
         var latlng = new kakao.maps.LatLng(place.y, place.x);
 
         map.setCenter(latlng);
